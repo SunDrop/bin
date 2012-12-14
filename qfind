@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mask='*.php'
+mask='*'
 case $# in
 	0) echo "usage: $0 [mask] <grep_param>"
 	exit
@@ -14,4 +14,4 @@ case $# in
 	;;
 esac
 
-sh -c "find . -name $mask -print 2>/dev/null" | xargs grep -s $gp
+sh -c "find . -name $mask -print 2>/dev/null" | xargs grep -sn $gp
