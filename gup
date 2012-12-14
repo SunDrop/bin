@@ -1,0 +1,9 @@
+#!/bin/bash
+PROJECTS=(admin gtp-core isrv mail mobile services social ssrv fbapp ../gtp-core)
+
+for ((i=0; i<${#PROJECTS[*]}; i++)); do
+	cd /apps/nurkz/${PROJECTS[$i]}
+	echo "updating" /apps/nurkz/${PROJECTS[$i]}
+	git pull
+	echo "Done"
+done
