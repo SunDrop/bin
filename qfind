@@ -1,0 +1,17 @@
+#!/bin/bash
+
+mask='*.php'
+case $# in
+	0) echo "usage: $0 [mask] <grep_param>"
+	exit
+	;;
+	
+	1) gp=$1
+	;;
+	
+	2) mask=$1
+	gp=$2
+	;;
+esac
+
+sh -c "find . -name $mask -print 2>/dev/null" | xargs grep -s $gp
