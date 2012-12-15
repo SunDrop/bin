@@ -1,0 +1,14 @@
+#!/bin/sh
+# Remove all .svn directories start from given
+# Use format: svn_clean directory_name
+
+if([ -z $1 ])
+then
+echo "Use format: svn_clean directory_name"
+exit
+fi
+
+base_dir=$1
+
+find "$base_dir" -depth -type d -name '.svn' -execdir rm -rf '{}' \;
+exit 0 

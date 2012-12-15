@@ -1,0 +1,26 @@
+#!/bin/bash
+
+###################################################
+# Скрипт для запуска всех тестов phpunit          #
+# @autor Вячеслав Конашков                        #
+###################################################
+
+case $# in
+	1)
+		if [ -d /apps/$1 ]
+		then
+			# Эту команду исправить, чтобы работала только с директориями
+			echo "Running tests for kernel of project $1"
+			`/usr/bin/phpunit --verbose --bootstrap /apps/$1/tests/phpunit.bootstrap.php --stop-on-error --stop-on-failure /apps/$1/tests/kernel/`
+		else
+			echo "Error running test"
+			echo "/apps/$1 is not a project directory"
+		fi
+		;;
+	*)
+		script_name=`basename $0`
+		echo "Script run all tests"
+		echo "Usage: $script_name <project_name>"
+		echo "Example: $script_name sarafon"
+		;;
+esac

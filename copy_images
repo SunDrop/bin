@@ -1,0 +1,8 @@
+#!/bin/bash
+for i in $*
+do
+	file_name=$i
+	file_name=${file_name%%.jpg}
+	file_name=$((270+$file_name)).jpg
+	cp $i $file_name
+done
