@@ -1,0 +1,4 @@
+#!/bin/sh
+# Simple notifyer
+eval time=\${$#}
+echo "notify-send '$*'" | at $time 2>&1 | tail -n1

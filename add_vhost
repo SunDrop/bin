@@ -1,0 +1,28 @@
+#!/bin/bash
+
+####################################
+# Скрипт создает новый vhost Апача #
+# @autor Вячеслав Конашков         #
+####################################
+
+case $# in
+	1)
+		# Скопируем дефолтный конфиг и заменить default на <vhost_name>
+		cat /etc/apache2/sites-available/default | sed "s/default/$1/g" > /etc/apache2/sites-available/$1.dev
+		echo "Add $1.dev ... OK"
+		# Подключить сайт
+		a2ensite $1.dev
+		echo "a2ensite $1.dev ... OK"
+		# Перегрузить конфигурацию апача
+		/etc/init.d/apache2 reload
+		# /etc/hosts
+		echo "Add to /etc/hosts $1.dev"
+	;;
+
+	*)
+		script_name=`basename $0`
+		echo "Usage: $script_name <vhost_name>"
+		echo "Example: $script_name eventer"
+	;;
+
+esac

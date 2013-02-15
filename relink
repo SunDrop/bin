@@ -1,0 +1,61 @@
+#!/bin/bash
+
+###################################################
+# Скрипт перекидывает бранч на рабочий линк Апача #
+# @autor Вячеслав Конашков                        #
+###################################################
+case $# in
+	2)
+		if [ -d $1 ] && ( [ -L $2 ] || [ ! -f $2 ] )
+		then
+			# Удаляем символьную ссылку
+			if [ -L $2 ]
+			then
+				  `unlink $2`
+				  `ln -s $1 $2`
+				  echo Linking ... OK
+			fi
+
+			# Пропишем dev_host
+			if [ -f ${2}.local.config/dev_host.xml ]
+			then
+				`ln ${2}.local.config/dev_host.xml $2/config/dev_host.xml`
+				echo "Export 'dev_host.xml' ... OK"
+			else
+				echo "Export 'dev_host.xml' ... Error"
+				echo "${2}.local.config/dev_host.xml is not file"
+			fi
+
+			# Пропишем config.js
+			if [ -f $2.local.config/config.js ]
+			then
+				`ln $2.local.config/config.js $2/static/js/config.js`
+				echo "Export 'config.js' ... OK"
+			else
+				echo "Export 'config.js' ... Error"
+				echo "$2.local.config/config.js is not file"
+			fi
+
+			# Установим права на директорию
+			if [ -d $2/cache/ ]
+			then
+				# Эту команду исправить, чтобы работала только с директориями
+				`chmod 777 -R $2/cache/`
+				echo Set mode cache ... OK
+			else
+				echo Set mode cache ... Error
+				echo "$2/cache/ is not a directory"
+			fi
+
+			echo $2 is now you working web copy! OK.
+		else
+			echo Linking ... Error
+			echo \"$1\" - must be a directory and \"$2\" must be a simbolic link
+		fi
+		;;
+	*)
+		script_name=`basename $0`
+		echo "Usage: $script_name <main_folder> <link>"
+		echo "Example: $script_name flg.trunk flg"
+		;;
+esac
