@@ -1,0 +1,2 @@
+#!/bin/sh
+ssh -t $@ "(cd /var/www/flirchi;bash)"

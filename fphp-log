@@ -1,0 +1,3 @@
+#!/bin/bash
+ssh wdata@sys2 "tail -f /var/log/php-error.log"
+

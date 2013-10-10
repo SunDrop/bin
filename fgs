@@ -1,0 +1,5 @@
+#!/bin/bash
+root_dir=$(dirname $(which ${0}))
+GRM=`php ${root_dir}/fgearman.php`
+(echo status; sleep 1) | telnet ${GRM}
+

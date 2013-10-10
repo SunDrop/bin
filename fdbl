@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?
+$info = pathinfo(__FILE__);
+$path = trim(file_get_contents( $info['dirname'].'/path' ));
+
+$conf = require(realpath($info['dirname'].'/'.$path.'/config/app/production.php'));
+foreach(array_keys($conf) as $cnf) {
+	$m = array();
+	if(preg_match('/^mysql-?(.*)$/', $cnf, $m)) {
+		print $s = ($m[1]?$m[1]:'(main)');
+		for($i = 0; $i < ceil((16-strlen($s))/8); $i++) print "\t";
+		print "{$conf[$cnf]['host']}\n";
+	}
+}

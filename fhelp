@@ -1,0 +1,4 @@
+#!/bin/bash
+root_dir=$(dirname $(which ${0}))/
+
+find ${root_dir} -executable | grep -v '.git' | grep -v '.idea' | sed "s@$root_dir@@g"
