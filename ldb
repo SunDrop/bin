@@ -1,0 +1,3 @@
+#!/bin/sh
+root_dir=$(dirname $(which ${0}))
+$(which mysql) `$(which php) ${root_dir}/ldb.php $@`

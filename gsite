@@ -1,0 +1,7 @@
+#!/bin/sh
+SITE=`zenity --entry \
+--title="Скачивание сайта" \
+--text="результат скачивания в /home/start/Desktop/sait.\nВведите начальный URL:" \
+--entry-text ""`
+cd /home/start/Desktop/sait
+wget -m -np -p --restrict-file-names=ascii --quota=4G -k  $SITE

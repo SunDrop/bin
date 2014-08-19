@@ -1,0 +1,9 @@
+#!/bin/sh
+root_dir=$(dirname $(which ${0}))
+
+CMD=`$(which php) ${root_dir}/fdb.php $@`
+if echo "$CMD" |grep -q "not found"; then
+    echo $CMD
+else
+    $(which mysql) $CMD
+fi

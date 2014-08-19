@@ -1,0 +1,3 @@
+#!/bin/bash
+for i in `echo "php1 php2 php3 app1 php5 php6"`; do echo $i; ssh root@${i} "/usr/local/etc/rc.d/php-fpm restart"; done;
+

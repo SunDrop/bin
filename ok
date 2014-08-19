@@ -1,0 +1,8 @@
+#/bin/sh
+if git pull && git push
+then
+    if [ -e ./deploy ]
+    then
+        ./deploy
+    fi
+fi
