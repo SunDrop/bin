@@ -1,5 +1,5 @@
 #!/bin/bash
-PROJECTS=(admin gtp-core isrv mail mobile services social ssrv fbapp ../gtp-core)
+PROJECTS=(admin gtp-core isrv mail mobile services social ssrv)
 
 for ((i=0; i<${#PROJECTS[*]}; i++)); do
 	cd /apps/nurkz/${PROJECTS[$i]}
