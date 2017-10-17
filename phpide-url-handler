@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# PhpStorm URL Handler
+# phpide://MobKMM/gv/class/GV/Sms/Sender/Email.php?30
+
+arg=${1}
+pattern="(phpide\:\/\/)?([A-Za-z]+)\/([^\?]+)\?([0-9]+)"
+# pattern=".*file(:\/\/|\=)(.*)&line=(.*)"
+
+project=$(echo "${arg}" | sed -r "s/${pattern}/\2/")
+project="${project,,}"
+# Get the file path.
+file=$(echo "${arg}" | sed -r "s/${pattern}/\3/")
+
+# Get the line number.
+line=$(echo "${arg}" | sed -r "s/${pattern}/\4/")
+
+# Check if phpstorm|pstorm command exist.
+if type phpstorm > /dev/null; then
+    /usr/bin/env phpstorm --line "${line}" "/apps/${project}/src/${file}"
+elif type pstorm > /dev/null; then
+    /usr/bin/env pstorm --line "${line}" "/apps/${project}/src/${file}"
+fi

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Phpide URL Handler
+Comment=Handle URL Scheme phpide://open?url=file://@file&line=@line and phpide://open?file=@file&line=@line
+Icon=phpstorm
+NoDisplay=true
+Categories=TextEditor;Utility;
+Exec=phpide-url-handler %u
+Terminal=false
+MimeType=x-scheme-handler/phpide;x-scheme-handler/pide;
+X-Desktop-File-Install-Version=0.21
