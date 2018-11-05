@@ -56,16 +56,8 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-## Colour Prompt
-COLOR_RED="\[\033[1;31m\]"
-COLOR_WHITE="\[\033[0;37m\]"
-COLOR_GREEN="\[\033[0;32m\]"
-COLOR_YELLOW="\[\033[0;33m\]"
-COLOR_BLUE="\e[0;34m"
-
 if [ "$color_prompt" = yes ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1="[${COLOR_YELLOW}!\!${COLOR_WHITE}]|${COLOR_RED}\t${COLOR_WHITE}|${COLOR_GREEN}\u:${COLOR_BLUE}\w${COLOR_WHITE}\$ " 
+    PS1='${debian_chroot:+($debian_chroot)}[\[\033[0;33m\]!\!\[\033[0;37m\]]|\[\033[1;31m\]\t\[\033[0;37m\]|\[\033[0;32m\]\u:\e[0;34m\w\[\033[0;37m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
